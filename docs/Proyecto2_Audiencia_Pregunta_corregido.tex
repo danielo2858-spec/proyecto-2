@@ -1,0 +1,113 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{booktabs,tabularx,array}
+\usepackage{hyperref}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\title{\textbf{Comprensión del contexto y delimitación de la audiencia técnica}\\[2pt]
+\large Proyecto 2 --- Visualización I (versión corregida)}
+\author{Arnold Santiago Torres Anzola \and Juan David Cruz Romero \and Daniel Alejandro Cipagauta Palacios}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Comprensión del contexto}
+
+El \textit{World Happiness Report 2024} (WHR 2024) compara el bienestar subjetivo de los países a partir de la
+evaluación de vida recogida por la Encuesta Mundial de Gallup. Cada persona ubica su vida actual en la escalera
+de Cantril, de 0 (peor vida posible) a 10 (mejor vida posible). El informe ordena 143 países según el promedio
+nacional de esta evaluación para el trienio 2021--2023.
+
+Para describir esas diferencias, el WHR estima un modelo de regresión con seis indicadores: PIB per cápita
+(logaritmo), apoyo social, esperanza de vida saludable, libertad para tomar decisiones, generosidad y percepción
+de corrupción. El archivo oficial \textit{Data for Figure 2.1} no contiene los valores originales de esos
+indicadores, sino la \textbf{porción de la evaluación de vida de cada país que el modelo asocia con cada
+indicador}, medida en puntos de la escalera y en relación con \textit{Distopía}, un país hipotético con los
+valores más bajos observados. Estas contribuciones describen asociaciones estadísticas, no efectos causales.
+
+Aunque el WHR 2024 dedica un capítulo al bienestar por grupos de edad, esas desagregaciones \textbf{no forman
+parte} del archivo obligatorio. Por eso, este proyecto no compara cohortes ni generaciones: compara países.
+
+\section{Audiencia técnica}
+
+\textbf{Destinatario:} la unidad de análisis comparativo del bienestar de un organismo internacional, es decir,
+el equipo de investigadores y analistas de datos encargado de elaborar los diagnósticos de país que acompañan
+sus informes de bienestar y desarrollo.
+
+\textbf{Interés en la problemática:} esta unidad necesita saber \emph{en qué dimensiones} se separan los países
+con mayor y menor evaluación de vida. Si la brecha se concentrara solo en el PIB per cápita, bastaría con
+seguir los indicadores económicos. Si también aparece en dimensiones sociales e institucionales (apoyo social,
+libertad para tomar decisiones y percepción de corrupción), el equipo debe incluirlas en sus diagnósticos de país.
+
+\textbf{Qué espera del informe:} definiciones explícitas de cada variable y de su escala, criterios
+reproducibles para agrupar países, tratamiento documentado de los valores faltantes y gráficos que permitan
+contrastar grupos y localizar países atípicos que merezcan un estudio de caso.
+
+\section{Pregunta analítica}
+
+\begin{quote}
+\textit{¿En qué dimensiones del bienestar ---económica (PIB per cápita), de salud (esperanza de vida
+saludable) y socioinstitucionales (apoyo social, libertad para tomar decisiones y percepción de corrupción)---
+se concentran las mayores diferencias entre los países del cuartil superior y del cuartil inferior de
+evaluación de vida en el WHR 2024 (promedio 2021--2023), y qué países se apartan del patrón de su grupo?}
+\end{quote}
+
+\textbf{Justificación de los grupos:} los cuartiles se construyen con la propia variable \texttt{Ladder score}
+del archivo oficial (cerca de 36 países por grupo). Así se evitan clasificaciones externas que el archivo no
+contiene, como regiones o niveles de ingreso, y cualquier persona puede reproducir la agrupación.
+
+\textbf{Alcance:} la pregunta es descriptiva y comparativa. Las diferencias en las contribuciones se
+interpretarán como \emph{asociaciones} con la evaluación de vida, no como efectos causales. La generosidad y el
+componente \textit{Distopía + residual} se reportarán como referencia, porque concentran lo que el modelo no
+logra asociar con los demás indicadores.
+
+\section{Variables del archivo oficial (WHR24\_Data\_Figure\_2.1.xls)}
+
+\begin{table}[h]
+\centering
+\caption{Variables disponibles en la fuente obligatoria y su uso en el análisis.}
+\small
+\begin{tabularx}{\textwidth}{@{}p{3.6cm}LL@{}}
+\toprule
+\textbf{Variable (columna)} & \textbf{Qué contiene y escala} & \textbf{Uso en el análisis} \\
+\midrule
+\texttt{Country name} & Nombre del país (143 países). & Identificador; etiquetas en gráficos interactivos. \\
+\texttt{Ladder score} & Promedio nacional de la escalera de Cantril (0--10), trienio 2021--2023. & Variable de referencia; base para construir los cuartiles. \\
+\texttt{upperwhisker}, \texttt{lowerwhisker} & Límites del intervalo de confianza al 95\,\% del \texttt{Ladder score}. & Indicar la incertidumbre al comparar países cercanos. \\
+\texttt{Explained by: Log GDP per capita} & Puntos de la escalera que el modelo asocia con el PIB per cápita (PPA, en logaritmo), en relación con Distopía. & Dimensión económica. \\
+\texttt{Explained by: Healthy life expectancy} & Puntos asociados con la esperanza de vida saludable al nacer. & Dimensión de salud. \\
+\texttt{Explained by: Social support} & Puntos asociados con la proporción de personas que dicen tener a quién acudir ante un problema. & Dimensión socioinstitucional. \\
+\texttt{Explained by: Freedom to make life choices} & Puntos asociados con la proporción de personas satisfechas con su libertad para decidir sobre su vida. & Dimensión socioinstitucional. \\
+\texttt{Explained by: Perceptions of corruption} & Puntos asociados con la percepción de corrupción en el gobierno y en las empresas. Un valor mayor indica \emph{menos} corrupción percibida respecto de Distopía. & Dimensión socioinstitucional. \\
+\texttt{Explained by: Generosity} & Puntos asociados con la donación a causas benéficas, ajustada por el PIB per cápita. & Referencia (contribución pequeña). \\
+\texttt{Dystopia + residual} & Valor de Distopía más la parte de la evaluación que el modelo no asocia con ningún indicador. & Referencia; señala lo que el modelo no captura. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\textbf{Notas de preparación.}
+(1) El archivo tiene 143 países y 11 columnas. En cada país, la suma de las seis contribuciones y de
+\texttt{Dystopia + residual} equivale al \texttt{Ladder score} (diferencia máxima de 0,00005, atribuible al
+redondeo); esta identidad se volverá a verificar en el Notebook.
+(2) Bahrain, Tajikistan y State of Palestine tienen la evaluación de vida pero no las contribuciones. Se
+mantendrán en la construcción de los cuartiles y se excluirán solo de los análisis por dimensión (140 países).
+(3) Venezuela registra una contribución del PIB igual a 0 y Lebanon un valor negativo de
+\texttt{Dystopia + residual}; ambos casos se señalarán al interpretar los resultados.
+(4) Las contribuciones están en puntos de la escalera, por lo que se pueden comparar entre dimensiones sin
+estandarizarlas.
+
+\section*{Referencias}
+\small
+Helliwell, J. F., Layard, R., Sachs, J. D., De Neve, J.-E., Aknin, L. B. y Wang, S. (Eds.). (2024).
+\textit{World Happiness Report 2024}. Wellbeing Research Centre, University of Oxford.
+\url{https://www.worldhappiness.report/ed/2024/}
+
+\noindent Datos: \textit{Data for Figure 2.1}, WHR 2024.
+\url{https://files.worldhappiness.report/WHR24_Data_Figure_2.1.xls}
+
+\end{document}
