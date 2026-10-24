@@ -48,23 +48,34 @@ libertad para tomar decisiones y percepción de corrupción), el equipo debe inc
 reproducibles para agrupar países, tratamiento documentado de los valores faltantes y gráficos que permitan
 contrastar grupos y localizar países atípicos que merezcan un estudio de caso.
 
-\section{Pregunta analítica}
+\section{Planteamiento del problema y pregunta analítica}
+
+Los países difieren mucho en la evaluación que sus habitantes hacen de su vida: en el WHR 2024 el promedio va
+de 1,7 (Afganistán) a 7,7 (Finlandia). La unidad de análisis necesita saber si esa brecha se concentra en la
+dimensión económica o si también aparece en dimensiones de salud y socioinstitucionales, porque de eso depende
+qué indicadores incluye en sus diagnósticos de país. El WHR 2024 descompone la evaluación de vida de cada país
+en contribuciones asociadas a seis indicadores, lo que permite comparar esas dimensiones en una misma escala
+(puntos de la escalera de Cantril).
 
 \begin{quote}
-\textit{¿En qué dimensiones del bienestar ---económica (PIB per cápita), de salud (esperanza de vida
-saludable) y socioinstitucionales (apoyo social, libertad para tomar decisiones y percepción de corrupción)---
-se concentran las mayores diferencias entre los países del cuartil superior y del cuartil inferior de
-evaluación de vida en el WHR 2024 (promedio 2021--2023), y qué países se apartan del patrón de su grupo?}
+\textbf{\textit{¿En qué dimensiones del bienestar ---económica, de salud y socioinstitucional--- se observan las
+mayores diferencias entre los países con mayor y menor evaluación de vida en el World Happiness Report 2024?}}
 \end{quote}
 
-\textbf{Justificación de los grupos:} los cuartiles se construyen con la propia variable \texttt{Ladder score}
-del archivo oficial (cerca de 36 países por grupo). Así se evitan clasificaciones externas que el archivo no
-contiene, como regiones o niveles de ingreso, y cualquier persona puede reproducir la agrupación.
+\textbf{Subpregunta:} ¿qué países se apartan del patrón de su grupo?
+
+\textbf{Dimensiones:} económica (PIB per cápita), de salud (esperanza de vida saludable) y socioinstitucional
+(apoyo social, libertad para tomar decisiones y percepción de corrupción).
+
+\textbf{Justificación de los grupos:} los países ``con mayor y menor evaluación de vida'' son el cuartil
+superior (Q4) y el cuartil inferior (Q1) de la variable \texttt{Ladder score} del archivo oficial (cerca de 36
+países por grupo). Así se evitan clasificaciones externas que el archivo no contiene, como regiones o niveles
+de ingreso, y cualquier persona puede reproducir la agrupación.
 
 \textbf{Alcance:} la pregunta es descriptiva y comparativa. Las diferencias en las contribuciones se
-interpretarán como \emph{asociaciones} con la evaluación de vida, no como efectos causales. La generosidad y el
-componente \textit{Distopía + residual} se reportarán como referencia, porque concentran lo que el modelo no
-logra asociar con los demás indicadores.
+interpretarán como \emph{asociaciones} con la evaluación de vida, no como efectos causales. La generosidad se
+reportará como referencia, porque su contribución es pequeña, y \textit{Distopía + residual} porque concentra
+lo que el modelo no asocia con ningún indicador.
 
 \section{Variables del archivo oficial (WHR24\_Data\_Figure\_2.1.xls)}
 

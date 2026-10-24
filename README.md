@@ -3,23 +3,30 @@
 Proyecto 2 — Visualización reproducible en Python (Seaborn y Plotly) a partir del
 *World Happiness Report 2024* (Data for Figure 2.1).
 
-**Pregunta analítica:** ¿En qué dimensiones del bienestar —económica (PIB per cápita), de salud
-(esperanza de vida saludable) y socioinstitucionales (apoyo social, libertad para tomar decisiones y
-percepción de corrupción)— se concentran las mayores diferencias entre los países del cuartil superior
-y del cuartil inferior de evaluación de vida en el WHR 2024, y qué países se apartan del patrón de su grupo?
+**Pregunta analítica:** ¿En qué dimensiones del bienestar —económica, de salud y socioinstitucional— se
+observan las mayores diferencias entre los países con mayor y menor evaluación de vida en el
+World Happiness Report 2024?
+
+**Subpregunta:** ¿qué países se apartan del patrón de su grupo?
 
 ## Estructura
 
-- `proyecto2.ipynb` — Notebook del análisis.
+- `proyecto2.ipynb` — Notebook del análisis (ejecutado).
 - `data/WHR24_Data_Figure_2.1.xls` — archivo oficial original (no se modifica).
   Fuente: https://files.worldhappiness.report/WHR24_Data_Figure_2.1.xls
+- `resultados/` — archivos generados por el Notebook:
+  - `Proyecto2_visualizaciones_interactivas.html` — gráficos de Plotly (se abre en cualquier navegador, sin conexión).
+  - `g1_distribucion.png` … `g4_correlaciones.png` — gráficos de Seaborn.
+  - `whr24_preparado.csv` — datos preparados (columnas renombradas, cuartiles e indicador socioinstitucional).
 - `docs/Proyecto2_Audiencia_Pregunta_corregido.tex` — audiencia, pregunta y variables (versión corregida).
 - `docs/` — guía del proyecto y propuesta original.
 
-## Requisitos
+## Cómo reproducir
 
 ```
-pip install pandas xlrd seaborn plotly
+pip install -r requirements.txt
+jupyter notebook proyecto2.ipynb      # o abrirlo en VS Code y ejecutar todo
 ```
 
+En Google Colab, quitar el comentario de la primera celda de código para clonar el repositorio.
 `xlrd` es necesario porque el archivo oficial está en formato `.xls`.
