@@ -15,7 +15,8 @@ World Happiness Report 2024?
 - `data/WHR24_Data_Figure_2.1.xls` — archivo oficial original (no se modifica).
   Fuente: https://files.worldhappiness.report/WHR24_Data_Figure_2.1.xls
 - `resultados/` — archivos generados por el Notebook:
-  - `Proyecto2_visualizaciones_interactivas.html` — gráficos de Plotly (se abre en cualquier navegador, sin conexión).
+  - `Proyecto2_visualizaciones_interactivas.html` — informe interactivo con los gráficos de Plotly (se abre en cualquier navegador, sin conexión).
+- `recursos/plantilla_reporte.html` — maqueta del informe; el Notebook la completa con las cifras calculadas.
   - `g1_distribucion.png` … `g4_correlaciones.png` — gráficos de Seaborn.
   - `whr24_preparado.csv` — datos preparados (columnas renombradas, cuartiles e indicador socioinstitucional).
 - `docs/Proyecto2_Audiencia_Pregunta_corregido.tex` — audiencia, pregunta y variables (versión corregida).
