@@ -104,13 +104,85 @@ lo que el modelo no asocia con ningún indicador.
 \noindent\textbf{Notas de preparación.}
 (1) El archivo tiene 143 países y 11 columnas. En cada país, la suma de las seis contribuciones y de
 \texttt{Dystopia + residual} equivale al \texttt{Ladder score} (diferencia máxima de 0,00005, atribuible al
-redondeo); esta identidad se volverá a verificar en el Notebook.
+redondeo); el Notebook verifica esta identidad antes de cualquier análisis.
 (2) Bahrain, Tajikistan y State of Palestine tienen la evaluación de vida pero no las contribuciones. Se
-mantendrán en la construcción de los cuartiles y se excluirán solo de los análisis por dimensión (140 países).
-(3) Venezuela registra una contribución del PIB igual a 0 y Lebanon un valor negativo de
-\texttt{Dystopia + residual}; ambos casos se señalarán al interpretar los resultados.
+mantuvieron en la construcción de los cuartiles y se excluyeron solo de los análisis por dimensión (140 países).
+(3) Venezuela registra una contribución del PIB igual a 0 y el Líbano un valor negativo de
+\texttt{Dystopia + residual}; ambos casos se señalan al interpretar los resultados.
 (4) Las contribuciones están en puntos de la escalera, por lo que se pueden comparar entre dimensiones sin
-estandarizarlas.
+estandarizarlas. La dimensión socioinstitucional se calculó como la suma de sus tres contribuciones.
+
+\section{Principales hallazgos}
+
+Entre los países del cuartil superior (Q4, media 6,88) y los del cuartil inferior (Q1, media 3,91) hay una
+diferencia de \textbf{2,96 puntos} en la evaluación de vida. La Tabla~\ref{tab:brechas} muestra cómo se reparte
+esa diferencia entre los componentes; como las contribuciones suman la evaluación de vida, los porcentajes
+suman 100\,\%.
+
+\begin{table}[h]
+\centering
+\caption{Contribución media por cuartil y brecha Q4 $-$ Q1 (puntos de la escalera; 140 países).}
+\label{tab:brechas}
+\small
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+\textbf{Dimensión} & \textbf{Componente} & \textbf{Q1} & \textbf{Q4} & \textbf{Brecha} & \textbf{\% de la brecha} \\
+\midrule
+Económica & PIB per cápita & 0,92 & 1,82 & 0,90 & 30\,\% \\
+Socioinstitucional & Apoyo social & 0,74 & 1,41 & 0,67 & 22\,\% \\
+ & Libertad para decidir & 0,49 & 0,74 & 0,25 & 8\,\% \\
+ & Percepción de corrupción & 0,12 & 0,29 & 0,17 & 6\,\% \\
+ & \textit{Subtotal socioinstitucional} & \textit{1,35} & \textit{2,44} & \textit{1,09} & \textit{37\,\%} \\
+Salud & Esperanza de vida saludable & 0,35 & 0,66 & 0,32 & 11\,\% \\
+Referencia & Generosidad & 0,15 & 0,17 & 0,02 & 1\,\% \\
+ & Distopía + residual & 1,15 & 1,79 & 0,65 & 22\,\% \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{Evaluación de vida}} & \textbf{3,91} & \textbf{6,88} & \textbf{2,96} & \textbf{100\,\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{enumerate}
+\item \textbf{El PIB per cápita es el componente individual con mayor brecha} (0,90 puntos; 30\,\%), seguido
+  por el \textbf{apoyo social} (0,67; 22\,\%). Ambos aumentan de forma gradual de Q1 a Q4 y, entre los extremos,
+  sus distribuciones casi no se superponen.
+\item \textbf{La dimensión socioinstitucional en conjunto supera a la económica}: apoyo social, libertad y
+  corrupción suman 1,09 puntos (37\,\%). La salud aporta 0,32 (11\,\%) y la generosidad no diferencia a los
+  grupos: sus intervalos de confianza al 95\,\% se superponen, mientras que en los otros cinco componentes no.
+\item \textbf{La percepción de corrupción solo distingue al grupo más alto}: es similar en Q1, Q2 y Q3
+  (alrededor de 0,1) y sube únicamente en Q4, donde además varía mucho entre países (de 0 a 0,57).
+\item \textbf{Las dimensiones no son independientes.} PIB, salud y apoyo social varían juntos (correlaciones de
+  Spearman entre 0,72 y 0,86), por lo que sus brechas no pueden leerse como efectos separados. Libertad y
+  corrupción se relacionan menos con el PIB (0,44 y 0,38) y aportan información que el PIB no resume.
+\item \textbf{Hay países que se apartan del patrón de su grupo.} Con una contribución del PIB propia de Q1,
+  Kirguistán (Q2), Uzbekistán (Q3) y Nicaragua (Q3) tienen niveles socioinstitucionales altos. En sentido
+  contrario, el Líbano (Q1) y Turquía (Q2) tienen contribuciones del PIB propias de Q3 o Q4, pero niveles
+  socioinstitucionales bajos.
+\item \textbf{Una parte importante de la brecha no se asocia con ningún indicador} (Distopía + residual, 0,65
+  puntos; 22\,\%). En varios países de Q1, como Níger, Burkina Faso o Chad, es uno de los componentes más grandes.
+\end{enumerate}
+
+\section{Conclusiones y limitaciones}
+
+\textbf{Respuesta a la pregunta.} Las mayores diferencias entre los países con mayor y menor evaluación de vida
+se observan en la \textbf{dimensión económica (PIB)} y en el \textbf{apoyo social}; consideradas en conjunto, las
+dimensiones \textbf{socioinstitucionales} concentran una parte de la brecha mayor que la económica. La salud
+muestra una brecha menor y la generosidad no diferencia a los grupos.
+
+\textbf{Implicación para la audiencia.} Un diagnóstico de país centrado solo en indicadores económicos dejaría
+fuera una parte de la brecha de bienestar de magnitud comparable o mayor. Apoyo social, libertad y percepción de
+corrupción merecen seguimiento propio, en especial libertad y corrupción, que son las menos redundantes con el
+PIB. Los países atípicos identificados son candidatos a estudios de caso.
+
+\textbf{Limitaciones.} (1) Las contribuciones son asociaciones estimadas por el modelo del WHR, no efectos
+causales. (2) Cada contribución es el indicador del país multiplicado por un coeficiente común, de modo que la
+comparación entre dimensiones refleja también esos pesos. (3) Los datos son promedios nacionales de 2021--2023:
+no muestran desigualdades dentro de los países ni cambios en el tiempo. (4) Los cuartiles son una elección del
+equipo y Q1 es muy heterogéneo (de 1,72 a 4,66 puntos).
+
+\textbf{Nuevas preguntas.} ¿Se mantiene el patrón con los valores originales de los indicadores? ¿Qué
+características comparten los países que se apartan de su grupo? ¿Cómo cambian estas brechas por grupos de edad
+o a lo largo del tiempo? (Las dos últimas requieren datos que no están en el archivo de la Figura 2.1.)
 
 \section*{Referencias}
 \small
