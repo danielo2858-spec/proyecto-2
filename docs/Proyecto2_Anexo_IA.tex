@@ -1,0 +1,72 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\setlist{nosep, leftmargin=1.2em}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+{\large\textbf{Anexo técnico: uso de inteligencia artificial}}\\
+Proyecto 2 --- Visualización I · Arnold Santiago Torres Anzola, Juan David Cruz Romero, Daniel Alejandro Cipagauta Palacios
+
+\section*{1. Herramienta y propósito}
+\textbf{Herramienta:} Claude (Anthropic, modelo Claude Opus 5.5) a través de la extensión Claude Code para VS Code.
+\textbf{Propósito:} apoyar la reformulación de la audiencia y la pregunta según la retroalimentación de la docente;
+inspeccionar el archivo oficial; generar y documentar el código del Notebook; proponer la paleta de colores;
+diseñar el informe HTML de Plotly; redactar borradores del documento PDF y de la presentación de ensayo; y subir
+los archivos al repositorio. El equipo definió el enfoque, aprobó cada decisión y es responsable del resultado.
+
+\section*{2. Prompts empleados}
+\small
+\begin{tabularx}{\textwidth}{@{}p{7.3cm}L@{}}
+\toprule
+\textbf{Prompt (resumido)} & \textbf{Para qué se usó} \\
+\midrule
+``Ayúdame a corregir este archivo [propuesta] con estas especificaciones [retroalimentación de la docente] y dime cómo se podría hacer'' & Delimitar la audiencia, reformular la pregunta desde el fenómeno y eliminar el análisis por edades, que el archivo no permite. \\
+``Mira, este es el archivo de los datos [WHR24\_Data\_Figure\_2.1.xls]'' & Verificar columnas, faltantes y que los componentes suman la evaluación de vida. \\
+``Ayúdame a generar la pregunta problema'' · ``Explícame la opción 1'' & Comparar tres formulaciones y elegir la comparación Q4 frente a Q1. \\
+``¿Qué gráficas utilizarías?'' & Seleccionar 4 gráficos de Seaborn y 2 de Plotly con propósito analítico y \textbf{proponer la paleta} (ver sección 3). \\
+``Dale, hazlo'' & Generar y ejecutar el Notebook completo con interpretaciones. \\
+``Explícame qué hiciste en el código'' & Comprender cada sección para la sustentación. \\
+``Ve al HTML, metámosle mejores cosas, está muy plano'' & Convertir la exportación de Plotly en un informe con contexto y lecturas. \\
+``En este te falta los principales hallazgos'' · ``Dame una presentación de esto'' & Completar el documento PDF y preparar diapositivas de ensayo con guion. \\
+\bottomrule
+\end{tabularx}
+\normalsize
+
+\section*{3. Paleta de colores}
+No se escribió un prompt dedicado a la paleta: la IA la propuso al responder ``¿Qué gráficas utilizarías?'' y el
+equipo la aprobó con ``Dale, hazlo''. Criterios propuestos y aceptados:
+\begin{itemize}
+\item \textbf{Cuartiles:} un solo tono azul de claro (Q1) a oscuro (Q4), porque los grupos tienen orden.
+\item \textbf{Dimensiones:} una paleta categórica de referencia, validada para daltonismo en pares adyacentes, en orden fijo; cada componente conserva su color en todos los gráficos. \textit{Distopía + residual} en gris, por ser lo que el modelo no explica.
+\item \textbf{Correlaciones:} escala divergente rojo--gris--azul con gris en el cero.
+\end{itemize}
+Limitación: el validador automático de la paleta no pudo ejecutarse en el equipo (requería Node.js), por lo que
+se usó la paleta ya validada sin modificar sus colores; los colores de bajo contraste se acompañan de leyendas y etiquetas.
+
+\section*{4. Revisión crítica}
+\begin{itemize}
+\item \textbf{Fuente de datos:} se detectó que el primer archivo usado era la versión 2026 y se reemplazó por el
+  archivo oficial WHR24, como exige la guía.
+\item \textbf{Errores corregidos:} el diccionario de la propuesta original describía valores de indicadores que el
+  archivo no contiene (solo trae contribuciones); un título de gráfico tenía una cifra escrita a mano que no coincidía con el
+  cálculo (0,91 en lugar de 0,90); una interpretación exageraba un dato del Líbano; Venezuela (PIB = 0) distorsionaba la
+  recta usada para identificar atípicos y se excluyó de ese ajuste.
+\item \textbf{Cautela inferencial:} se revisaron títulos e interpretaciones para eliminar lenguaje causal
+  (por ejemplo, ``la dimensión socioinstitucional los separa'' se cambió por una descripción).
+\item \textbf{Verificación:} todas las cifras del informe salen del Notebook, que se ejecuta de principio a fin;
+  los integrantes revisaron el código y las interpretaciones para poder explicarlos en la sustentación.
+\item \textbf{Reflexión:} la IA aceleró la programación y el diseño, pero también cometió errores que solo
+  aparecieron al contrastar los resultados con los datos. Su uso exige verificar cada afirmación contra la evidencia.
+\end{itemize}
+
+\end{document}
